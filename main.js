@@ -6,95 +6,93 @@ const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
 
-const robot = 'http://192.168.56.101:5000/';
-
 const app = express();
 app.use(cors());
 
 app.get('/', (req, res) => res.send('Test'));
 
-app.get('/get-name', (req, res) => {
-    axios.get(robot + 'getName')
+app.get('/:ip/get-name', (req, res) => {
+    axios.get(`http://${req.params.ip}/getName`)
         .then((data) => {
             console.log(data.data);
             res.send(data.data);
         });
 });
 
-app.get('/get-type', (req, res) => {
-    axios.get(robot + 'getType')
+app.get('/:ip/get-type', (req, res) => {
+    axios.get(`http://${req.params.ip}/getType`)
         .then((data) => {
             console.log(data.data);
             res.send(data.data);
         });
 });
 
-app.get('/get-battery', (req, res) => {
-    axios.get(robot + 'getBatteryLevel')
+app.get('/:ip/get-battery', (req, res) => {
+    axios.get(`http://${req.params.ip}/getBatteryLevel`)
         .then((data) => {
             console.log(data.data);
             res.send(data.data);
         });
 });
 
-app.get('/actions/stand-init', (req, res) => {
-    axios.get(robot + 'actions/StandInit')
+app.get('/:ip/actions/stand-init', (req, res) => {
+    axios.get(`http://${req.params.ip}/actions/StandInit`)
         .then((data) => {
             console.log('StandInit');
             res.send(data.data);
         });
 });
 
-app.get('/actions/sit-relax', (req, res) => {
-    axios.get(robot + 'actions/SitRelax')
+app.get('/:ip/actions/sit-relax', (req, res) => {
+    axios.get(`http://${req.params.ip}/actions/SitRelax`)
         .then((data) => {
             console.log('SitRelax');
             res.send(data.data);
         });
 });
 
-app.get('/actions/stand-zero', (req, res) => {
-    axios.get(robot + 'actions/StandZero')
+app.get('/:ip/actions/stand-zero', (req, res) => {
+    axios.get(`http://${req.params.ip}/actions/StandZero`)
         .then((data) => {
             console.log('StandZero');
             res.send(data.data);
         });
 });
 
-app.get('/actions/lying-belly', (req, res) => {
-    axios.get(robot + 'actions/LyingBelly')
+app.get('/:ip/actions/lying-belly', (req, res) => {
+    axios.get(`http://${req.params.ip}/actions/LyingBelly`)
         .then((data) => {
             console.log('LyingBelly');
             res.send(data.data);
         });
 });
 
-app.get('/actions/lying-back', (req, res) => {
-    axios.get(robot + 'actions/LyingBack')
+app.get('/:ip/actions/lying-back', (req, res) => {
+    axios.get(`http://${req.params.ip}/actions/LyingBack`)
         .then((data) => {
             console.log('LyingBack');
             res.send(data.data);
         });
 });
 
-app.get('/actions/stand', (req, res) => {
-    axios.get(robot + 'actions/Stand')
+app.get('/:ip/actions/stand', (req, res) => {
+    axios.get(`http://${req.params.ip}/actions/Stand`)
         .then((data) => {
             console.log('Stand');
             res.send(data.data);
         });
 });
 
-app.get('/actions/crouch', (req, res) => {
-    axios.get(robot + 'actions/Crouch')
+app.get('/:ip/actions/crouch', (req, res) => {
+    axios.get(`http://${req.params.ip}/actions/Crouch`)
         .then((data) => {
             console.log('Crouch');
             res.send(data.data);
         });
 });
 
-app.get('/actions/sit', (req, res) => {
-    axios.get(robot + 'actions/Sit')
+app.get('/:ip/actions/sit', (req, res) => {
+    axios.get(`http://${req.params.ip}/actions/Sit`)
         .then((data) => {
             console.log('Sit');
             res.send(data.data);
