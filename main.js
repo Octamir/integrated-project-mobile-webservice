@@ -116,4 +116,22 @@ app.get('/:ip/actions/sit', (req, res) => {
         .catch((err) => errorHandler(res, err));
 });
 
+app.get('/:ip/ask/:text', (req,res) => {
+    axios.get(`http://${req.params.ip}/ask/${req.params.text}`)
+        .then((data) => {
+        console.log(`${req.params.text}`)
+            res.send(data.data);
+        })
+        .catch((err) => errorHandler(res, err));
+});
+
+app.get('/:ip/move/:x/:y/:d', (req,res) => {
+    axios.get(`http://${req.params.ip}/move/${req.params.x}/${req.params.y}/${req.params.d}`)
+        .then((data) => {
+            console.log(`x:${req.params.x}y:${req.params.y}d:${req.params.d}`)
+            res.send(data.data);
+        })
+        .catch((err) => errorHandler(res, err));
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
