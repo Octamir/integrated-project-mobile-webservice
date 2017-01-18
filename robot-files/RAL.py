@@ -251,8 +251,9 @@ In case of a real robot, transfer the app.route and crossdomain to the function 
 arnold_images = []
 arnold_counter = 0
 import base64
+import os
 for i in range(1, 8): # There are 7 Arnold images
-    with open('img/arnold{0}.png'.format(i), 'rb') as image_file:
+    with open('{0}/img/arnold{1}.png'.format(os.path.dirname(os.path.realpath(__file__)), i), 'rb') as image_file:
         arnold_images.append(base64.b64encode(image_file.read()))
 
 @app.route('/getPicture', methods=['GET'])
