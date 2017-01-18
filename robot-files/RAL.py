@@ -78,6 +78,7 @@ def getIP_HTTP():
  
 #TYPE
 def getType():
+    """
     if randNum == 0:
         return "PEPPER"
     elif randNum == 1:
@@ -86,7 +87,10 @@ def getType():
         return "BUDDY"
     else:
         return "JIBO"
- 
+    """
+
+    return 'NAO'
+
 @app.route('/getType', methods=['GET'])
 @crossdomain(origin='*')
 def getType_HTTP():
@@ -94,6 +98,7 @@ def getType_HTTP():
  
 #NAME
 def getName():
+    """
     if randNum == 0:
         return "Mister Pepperoni"
     elif randNum == 1:
@@ -102,6 +107,9 @@ def getName():
         return "Mister Buttbuddy"
     else:
         return "Mister Hibo_jibo"
+    """
+
+    return 'Mister Nao'
  
 @app.route('/getName', methods=['GET'])
 @crossdomain(origin='*')
@@ -168,12 +176,7 @@ def ask(text):
 @crossdomain(origin='*')
 def ask_HTTP(text):
     return jsonify({'text': ask(text)}), 200
- 
-@app.route('/fart', methods=['GET'])
-@crossdomain(origin='*')
-def fart():
-    return ask_HTTP("pfffffrrrttrtrfrtrfrtrttrffrfrtttrfrt")
- 
+
 #MOVE
 #http://doc.aldebaran.com/2-1/_downloads/almotion_moveTo1.py
 def move(x,y,d):
