@@ -228,9 +228,7 @@ def getRobot():
 @crossdomain(origin='*')
 def getRobot_HTTP():
     return getRobot(), 200
-    
-@app.route('/getPicture', methods=['GET'])
-@crossdomain(origin='*')
+
 def getPicture_HTTP():
     try:
         photoCaptureProxy = ALProxy("ALPhotoCapture", nao_host, nao_port) 
@@ -242,7 +240,28 @@ def getPicture_HTTP():
         return jsonify({'image': encoded_string})
     except Exception, e:
         return jsonify({'error': str(e)}), 200
- 
+
+"""
+This function is purely to test the livestream of images while using a virtual robot, as it does not have a camera
+In case of a real robot, transfer the app.route and crossdomain to the function above
+"""
+arnold_images = []
+arnold_counter = 0
+import base64
+for i in range(1, 8): # There are 7 Arnold images
+    with open('img/arnold{0}.png'.format(i), 'rb') as image_file:
+        arnold_images.append(base64.b64encode(image_file.read()))
+
+@app.route('/getPicture', methods=['GET'])
+@crossdomain(origin='*')
+def getArnold_HTTP():
+    global arnold_images
+    global arnold_counter
+
+    tmp = jsonify({'image': arnold_images[arnold_counter]})
+    arnold_counter = (arnold_counter + 1) % len(arnold_images)
+    return tmp
+
 if __name__ == '__main__':
     app.run(debug=True,host=webserverIp)
     randNum = randint(0,2)
