@@ -4,10 +4,12 @@ const port = 3000;
 
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan');
 const axios = require('axios');
 
-const app = express();
-app.use(cors());
+const app = express()
+    .use(cors())
+    .use(morgan('dev'));
 
 const errorHandler = (res, err) => {
     // Right now we'll only handle the robot not being found
@@ -129,6 +131,14 @@ app.get('/:ip/move/:x/:y/:d', (req,res) => {
     axios.get(`http://${req.params.ip}/move/${req.params.x}/${req.params.y}/${req.params.d}`)
         .then((data) => {
             console.log(`x:${req.params.x}y:${req.params.y}d:${req.params.d}`)
+            res.send(data.data);
+        })
+        .catch((err) => errorHandler(res, err));
+});
+
+app.get('/:ip/get-picture', (req,res) => {
+    axios.get(`http://${req.params.ip}/getPicture`)
+        .then((data) => {
             res.send(data.data);
         })
         .catch((err) => errorHandler(res, err));
