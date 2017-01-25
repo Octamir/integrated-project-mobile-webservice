@@ -152,11 +152,18 @@ def getActions():
             { 'route': 'actions/StandInit', 'displayName': 'Stand Init', 'type': 'standing' },
             { 'route': 'actions/StandZero', 'displayName': 'Stand Zero', 'type': 'standing' },
             { 'route': 'actions/Stand', 'displayName': 'Stand', 'type': 'standing' },
+
             { 'route': 'actions/SitRelax', 'displayName': 'Sit Relax', 'type': 'sitting' },
             { 'route': 'actions/Crouch', 'displayName': 'Crouch', 'type': 'sitting' },
             { 'route': 'actions/Sit', 'displayName': 'Sit', 'type': 'sitting' },
+
             { 'route': 'actions/LyingBelly', 'displayName': 'Lie on belly', 'type': 'lying' },
             { 'route': 'actions/LyingBack', 'displayName': 'Lie on back', 'type': 'lying' },
+
+            { 'route': 'move/hand/open/LHand', 'displayName': 'Open left hand', 'type': 'hand gesture' },
+            { 'route': 'move/hand/open/RHand', 'displayName': 'Open right hand', 'type': 'hand gesture' },
+            { 'route': 'move/hand/close/LHand', 'displayName': 'Close left hand', 'type': 'hand gesture' },
+            { 'route': 'move/hand/close/RHand', 'displayName': 'Close right hand', 'type': 'hand gesture' },
            ]
 
 @app.route('/getActions', methods=['GET'])
